@@ -2,7 +2,7 @@
 
 ## For Ideathon 4.0
 
-## Idea  
+### Idea  
 **ShareSphere** is all about bringing people closer and making life a little easier for everyone in the neighborhood. Imagine having a go-to place where you can ask for help or lend a hand with everyday tasks like:  
 - 🛒 Picking up groceries when you’re swamped.  
 - 📚 Tutoring a student who needs extra support.  
