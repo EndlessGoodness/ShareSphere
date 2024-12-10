@@ -1,0 +1,22 @@
+# Node.js dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables (Important for security)
+.env
+
+# MacOS system files
+.DS_Store
+
+# Visual Studio Code settings
+.vscode/
+
+# npm package-lock file
+package-lock.json
+
+# Other
+*.log
