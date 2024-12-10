@@ -17,3 +17,29 @@ Our platform is designed to feel simple and natural, like talking to a friend. H
 
 With **ShareSphere**, we’re not just solving problems; we’re building a community where everyone looks out for each other.  
 Life’s better when we work together! 🤝
+
+Project Progress:
+
+This project is still in progress, but here’s what’s been done so far:
+
+    User Registration API: A basic user registration system has been set up using Express.js and MongoDB.
+        Users can register by providing their name, email, and password.
+        Passwords are stored securely (to be further implemented with hashing for security).
+    API Endpoints:
+        /api/users/register - Allows users to register on the platform.
+
+Technologies Used:
+
+    Node.js: JavaScript runtime for the backend.
+    Express.js: Web framework for building RESTful APIs.
+    MongoDB: NoSQL database to store user data.
+    Mongoose: MongoDB object modeling library.
+    Express-Validator: Middleware to validate user inputs (email, password).
+    JWT (JSON Web Tokens): For user authentication (future implementation).
+
+To Do:
+
+    Implement user authentication with JWT.
+    Add the ability to create, update, and delete tasks.
+    Implement messaging between users.
+    Add reviews and ratings for users.
