@@ -4,6 +4,11 @@ const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
+require('dotenv').config();  // Load environment variables
+
+const jwtSecret = process.env.JWT_SECRET;  // Get the secret from .env
+
+
 app.use(express.json()); //handle JSON
 
 app.use('/api/users', userRoutes);
