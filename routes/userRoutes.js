@@ -1,6 +1,8 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 
@@ -21,8 +23,18 @@ router.post(
         const { name, email, password } = req.body;
 
         try {
+             // Check if user already exists
+             let user1 = await User.findOne({ email });
+             if (user1) {
+                 return res.status(400).json({ msg: 'User already exists' });
+             }
+             //Create new user
             const user = new User({ name, email, password });
             await user.save();
+            
+            // Create and return JWT
+            const payload = { userId: user._id };
+            const token = jwt.sign(payload, 'yourSecretKey', { expiresIn: '1h' });
             res.status(201).json({ message: 'User registered!' });
         } catch (error) {
             res.status(500).json({ error: error.message });
