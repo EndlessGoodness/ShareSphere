@@ -26,7 +26,12 @@ Life’s better when we work together! 🤝
 
 ## Project Progress
 
-This project is still in progress, but here’s what’s been done so far:
+### Full-Stack Application
+
+ShareSphere is built as a **full-stack application**, with the following key features:
+
+- **Frontend** built using **Vite** (Vanilla JS) to create a fast and interactive user interface.
+- **Backend** built with **Node.js** and **Express.js**, connected to a **MongoDB** database for storing user data and task information.
 
 ### User Registration and Authentication API
 
@@ -43,12 +48,19 @@ This project is still in progress, but here’s what’s been done so far:
   - `/api/users/register`: Allows users to register on the platform.
   - `/api/users/login`: Allows users to log in to the platform using their credentials.
 
+### Frontend Integration
+
+- The frontend is powered by **Vite** and interacts with the backend through **API requests** for user authentication and task management.
+- **CORS** (Cross-Origin Resource Sharing) is enabled in the backend to allow communication between the frontend (running on port 5173) and the backend (running on port 3000).
+
 ### Technologies Used:
 
 - **Node.js**: JavaScript runtime for the backend.
 - **Express.js**: Web framework for building RESTful APIs.
 - **MongoDB**: NoSQL database to store user data.
 - **Mongoose**: MongoDB object modeling library for interaction with MongoDB.
+- **Vite**: A fast and modern build tool for the frontend (Vanilla JS).
+- **CORS**: Middleware for enabling cross-origin requests.
 - **Express-Validator**: Middleware to validate user inputs (email, password).
 - **bcryptjs**: Library used for securely hashing passwords.
 - **jsonwebtoken (JWT)**: For secure user authentication.
@@ -76,5 +88,6 @@ This project is still in progress, but here’s what’s been done so far:
 ### Next Steps
 
 - Finalize the implementation of the `delete` task feature and improve authentication with more complex JWT-based session management.
-- Test all APIs using `curl` or Postman.
+- Test all APIs using **Postman** or **curl**.
 - Implement real-time messaging functionality and integrate it with the task system.
+- Add **frontend components** for managing tasks and user profiles.
