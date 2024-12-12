@@ -8,24 +8,16 @@ require('dotenv').config();  // Load environment variables
 
 const jwtSecret = process.env.JWT_SECRET;  // Get the secret from .env
 
+app.use(express.json()); // Handle JSON parsing
 
-app.use(express.json()); //handle JSON
+app.use('/api/users', userRoutes); // Set up the user routes
 
-app.use('/api/users', userRoutes);
-
-app.get('/',(req, res) => {
-    res.send('Hello, Sharesphere!');
+app.get('/', (req, res) => {
+    res.send('Hello, ShareSphere!');
 });
 
-//START SERVER
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`This server runs on http://localhost:${PORT}`);
-});
-
-//MongoDB
-
-mongoose.connect('mongodb://127.0.0.1:27017/ShareSphere',{
+// MongoDB connection
+mongoose.connect('mongodb://127.0.0.1:27017/ShareSphere', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
@@ -36,4 +28,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/ShareSphere',{
         console.error('MongoDB connection error:', err);
     });
 
-    app.use('/api/users', userRoutes);
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`This server runs on http://localhost:${PORT}`);
+});

@@ -42,7 +42,7 @@ router.post(
             const payload = { userId: user._id };
             const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-            res.status(201).json({ message: 'User registered!', token });
+            res.status(201).json({ message: 'User registered!', token, user: { name: user.name, email: user.email } });
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
@@ -80,7 +80,7 @@ router.post(
             // Create and return JWT
             const payload = { userId: user._id };
             const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
-            res.json({ token });
+            res.json({ token, user: { name: user.name, email: user.email } });
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
