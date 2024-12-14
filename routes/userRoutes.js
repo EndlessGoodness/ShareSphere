@@ -87,7 +87,7 @@ router.post(
     }
 );
 
-// Profile route
+// Get user profile
 router.get('/profile', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user).select('-password'); // Exclude password
@@ -96,6 +96,25 @@ router.get('/profile', auth, async (req, res) => {
         }
         res.json(user);
     } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Delete user account
+router.delete('/delete', auth, async (req, res) => {
+    try {
+        const userId = req.user; // Extract userId from auth middleware
+
+        // Find and delete the user by ID
+        const user = await User.findByIdAndDelete(userId);
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.json({ message: 'User account deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting user:', error);
         res.status(500).json({ error: error.message });
     }
 });
