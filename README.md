@@ -3,91 +3,182 @@
 **Team Name:** TheSaints  
 **For Ideathon 4.0**
 
-## Idea
+---
 
-**ShareSphere** is all about bringing people closer and making life a little easier for everyone in the neighborhood. Imagine having a go-to place where you can ask for help or lend a hand with everyday tasks like:
+## Overview
 
-- 🛒 Picking up groceries when you’re swamped.
-- 📚 Tutoring a student who needs extra support.
-- 🔧 Fixing a leaky faucet or sharing tools.
-- 🐾 Taking care of a pet or running small errands.
-
-Our platform is designed to feel simple and natural, like talking to a friend. Here’s how it works:
-
-- **Easy to Use:** Post what you need or offer help in just a few clicks.
-- **Local First:** We match you with people nearby, so help is always close.
-- **Safe Connections:** Chat securely and see ratings to know you’re in good hands.
-- **Building Trust:** Profiles and reviews make it easy to find reliable helpers or requesters.
-
-With **ShareSphere**, we’re not just solving problems; we’re building a community where everyone looks out for each other.  
-Life’s better when we work together! 🤝
+**ShareSphere** is a community-first platform aimed at fostering connections within neighborhoods. It enables users to offer or request help for everyday tasks, promoting collaboration and trust. Whether it's picking up groceries, tutoring, or taking care of a pet, ShareSphere creates a space where everyone can lend a helping hand.  
 
 ---
 
-## Project Progress
+## Features
 
-### Full-Stack Application
+- **Simple and Intuitive Design**: Post tasks or offers quickly and easily.
+- **Localized Matches**: Connect with people nearby for fast and relevant assistance.
+- **Secure and Trusted**: Profiles, reviews, and secure chats ensure a reliable experience.
+- **Building Community**: Encourages a supportive and collaborative environment.
 
-ShareSphere is built as a **full-stack application**, with the following key features:
+---
 
-- **Frontend** built using **Vite** (Vanilla JS) to create a fast and interactive user interface.
-- **Backend** built with **Node.js** and **Express.js**, connected to a **MongoDB** database for storing user data and task information.
+## Tech Stack
 
-### User Registration and Authentication API
+### Frontend:
+- **Vite (Vanilla JS)**: Provides a fast and interactive user interface.
 
-- **User Registration:**
-  - A user registration system has been implemented using Express.js and MongoDB. Users can now register by providing their name, email, and password.
-  - Passwords are hashed for security before being stored in the database.
-  - JWT (JSON Web Tokens) is generated upon successful registration and sent to the client for authentication.
-
-- **User Login:**
-  - Users can log in using their email and password.
-  - The system checks for valid credentials and, if successful, generates a JWT token for the session.
-
-- **API Endpoints:**
-  - `/api/users/register`: Allows users to register on the platform.
-  - `/api/users/login`: Allows users to log in to the platform using their credentials.
-
-### Frontend Integration
-
-- The frontend is powered by **Vite** and interacts with the backend through **API requests** for user authentication and task management.
-- **CORS** (Cross-Origin Resource Sharing) is enabled in the backend to allow communication between the frontend (running on port 5173) and the backend (running on port 3000).
-
-### Technologies Used:
-
-- **Node.js**: JavaScript runtime for the backend.
+### Backend:
+- **Node.js**: Server-side JavaScript runtime.
 - **Express.js**: Web framework for building RESTful APIs.
-- **MongoDB**: NoSQL database to store user data.
-- **Mongoose**: MongoDB object modeling library for interaction with MongoDB.
-- **Vite**: A fast and modern build tool for the frontend (Vanilla JS).
-- **CORS**: Middleware for enabling cross-origin requests.
-- **Express-Validator**: Middleware to validate user inputs (email, password).
-- **bcryptjs**: Library used for securely hashing passwords.
-- **jsonwebtoken (JWT)**: For secure user authentication.
+- **MongoDB**: NoSQL database for user data and task management.
+- **Mongoose**: Object modeling for MongoDB.
+
+### Additional Libraries:
+- **Express-Validator**: Validates user inputs like email and passwords.
+- **bcryptjs**: Secures user passwords through hashing.
+- **jsonwebtoken (JWT)**: Implements secure user authentication.
+- **CORS**: Enables cross-origin communication between frontend and backend.
 
 ---
 
-## To Do:
+## API Implementation
 
-- **User Profile and Task Management**:
-  - Implement user profile functionality.
-  - Allow users to create, update, and delete tasks.
+### User Authentication:
+
+- **User Registration**:
+  - Securely register users with hashed passwords stored in MongoDB.
+  - Generate and return a JWT for authenticated sessions.
+  - Endpoint: `/api/users/register`
+
+- **User Login**:
+  - Authenticate users using email and password.
+  - Validate credentials and return a JWT upon success.
+  - Endpoint: `/api/users/login`
+
+- **User Account Deletion**:
+  - Authenticated users can delete their accounts.
+  - Secure deletion using user-specific JWTs.
+  - Endpoint: `/api/users/delete`
+
+### Task Management:  
+To be implemented:  
+- Create, update, and delete tasks via authenticated endpoints.  
+- Real-time status updates.
+
+### Messaging System:  
+To be implemented:  
+- Enable secure user-to-user messaging for task discussions.
+
+---
+
+## Progress Updates
+
+### Completed:
+1. **Authentication System**:
+   - Full user registration and login workflows.
+   - Password hashing using `bcryptjs`.
+   - JWT-based authentication.
+
+2. **API Endpoints**:
+   - `/api/users/register`: User registration.
+   - `/api/users/login`: User login.
+   - `/api/users/delete`: Delete user account.
+
+3. **Frontend Integration**:
+   - Initial integration of authentication APIs using **Vite**.
+   - Backend (port 3000) communicates with the frontend (port 5173) using CORS middleware.
+
+---
+
+### In Progress:
+1. **User Profile and Task Management**:
+   - Add profile functionality for users to manage tasks.
+   - Enable task creation, editing, and deletion.
+
+2. **Reviews and Ratings**:
+   - Implement a rating system to enhance trust.
+
+3. **Real-Time Messaging**:
+   - Add a chat system for communication between users.
+
+---
+
+## Next Steps
+
+1. **Finalize Task Management**:
+   - Build and test APIs for creating, updating, and deleting tasks.
+   - Integrate with frontend components.
+
+2. **Enhance Security**:
+   - Add advanced password validation and token storage mechanisms.
+   - Improve error handling across APIs.
+
+3. **Frontend Development**:
+   - Develop user-friendly components for tasks, profiles, and messaging.
+
+4. **Testing**:
+   - Use **Postman** and **curl** for backend testing.
+   - Conduct end-to-end tests for frontend-backend interactions.
+
+---
+
+## How to Run the Project
+
+### Prerequisites:
+- **Node.js** and **npm** installed on your machine.
+- MongoDB instance (local or cloud).
+
+### Steps:
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/ShareSphere.git
+   cd ShareSphere
+   ```
+2. Install dependencies for the backend:
+  ```
+  cd backend
+  npm install
+  ```
+3. Set up the `.env` file in the backend:  
+  ```
+  PORT=3000
+  MONGO_URI=your_mongo_uri
+  JWT_SECRET=your_jwt_secret
+  ```
+4. Start the backend server:
+  ```
+  npm start
+  ```
+5. Install dependencies for the frontend:
+  ```
+  cd ../frontend
+  npm install
+  ```
+6. Start the frontend development server:
+  ```
+  npm run dev
+  ```
+
+---
+
+## Contributing
+We welcome contributions to ShareSphere!
+Feel free to submit issues, suggestions, or pull requests.
+
+1. Fork the repository.
+2. Create a new branch for your feature:
+
+  `git checkout -b feature-branch-name`
+
+3. Commit your changes and push:
+
+  `git push origin feature-branch-name`
+
+4. Submit a pull request and provide a detailed description of your changes.
+
+---
+
+## LICENSE
+
+This project is licensed under the MIT License.
   
-- **Messaging System**:
-  - Add the ability for users to send messages to each other for task-related discussions.
+  
 
-- **Reviews and Ratings**:
-  - Implement a review system where users can rate and review each other based on tasks completed.
-
-- **Improve Security**:
-  - Add additional validation and error handling.
-  - Implement better password strength validation and secure JWT token storage.
-
----
-
-### Next Steps
-
-- Finalize the implementation of the `delete` task feature and improve authentication with more complex JWT-based session management.
-- Test all APIs using **Postman** or **curl**.
-- Implement real-time messaging functionality and integrate it with the task system.
-- Add **frontend components** for managing tasks and user profiles.
