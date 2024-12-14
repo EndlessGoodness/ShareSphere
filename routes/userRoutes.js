@@ -87,7 +87,7 @@ router.post(
     }
 );
 
-// Get user profile
+// Profile route
 router.get('/profile', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user).select('-password'); // Exclude password
@@ -100,22 +100,35 @@ router.get('/profile', auth, async (req, res) => {
     }
 });
 
-// Delete user account
-router.delete('/delete', auth, async (req, res) => {
-    try {
-        const userId = req.user; // Extract userId from auth middleware
+// Protected route to update user profile
+router.put('/profile', auth, async (req, res) => {
+    const { name, surname, mobile, address1, address2, postcode, state, area, email, education, country, region } = req.body;
 
-        // Find and delete the user by ID
-        const user = await User.findByIdAndDelete(userId);
+    try {
+        const user = await User.findById(req.user);
 
         if (!user) {
-            return res.status(404).json({ error: 'User not found' });
+            return res.status(404).json({ msg: 'User not found' });
         }
 
-        res.json({ message: 'User account deleted successfully' });
-    } catch (error) {
-        console.error('Error deleting user:', error);
-        res.status(500).json({ error: error.message });
+        user.name = name || user.name;
+        user.surname = surname || user.surname;
+        user.mobile = mobile || user.mobile;
+        user.address1 = address1 || user.address1;
+        user.address2 = address2 || user.address2;
+        user.postcode = postcode || user.postcode;
+        user.state = state || user.state;
+        user.area = area || user.area;
+        user.email = email || user.email;
+        user.education = education || user.education;
+        user.country = country || user.country;
+        user.region = region || user.region;
+
+        await user.save();
+
+        res.json(user);
+    } catch (err) {
+        res.status(500).json({ msg: 'Server error' });
     }
 });
 
