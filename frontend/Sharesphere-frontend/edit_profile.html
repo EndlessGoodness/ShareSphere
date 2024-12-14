@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- FontAwesome 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+        .profile-button {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                    <span class="font-weight-bold">Surya Singh</span>
+                    <span class="text-black-50">langot@mail.com.my</span>
+                </div>
+            </div>
+            <div class="col-md-9 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <form id="editProfileForm">
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label class="labels">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="first name" value="">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">Surname</label>
+                                <input type="text" class="form-control" id="surname" placeholder="surname" value="">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label class="labels">Mobile Number</label>
+                                <input type="text" class="form-control" id="mobile" placeholder="enter phone number" value="">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Address Line 1</label>
+                                <input type="text" class="form-control" id="address1" placeholder="enter address line 1" value="">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Address Line 2</label>
+                                <input type="text" class="form-control" id="address2" placeholder="enter address line 2" value="">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Postcode</label>
+                                <input type="text" class="form-control" id="postcode" placeholder="enter postcode" value="">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">State</label>
+                                <input type="text" class="form-control" id="state" placeholder="enter state" value="">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Area</label>
+                                <input type="text" class="form-control" id="area" placeholder="enter area" value="">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Email ID</label>
+                                <input type="text" class="form-control" id="email" placeholder="enter email id" value="">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Education</label>
+                                <input type="text" class="form-control" id="education" placeholder="education" value="">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label class="labels">Country</label>
+                                <input type="text" class="form-control" id="country" placeholder="country" value="">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">State/Region</label>
+                                <input type="text" class="form-control" id="region" placeholder="state" value="">
+                            </div>
+                        </div>
+                        <div class="mt-5 text-center">
+                            <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Script to handle form submission -->
+    <script>
+        document.getElementById('editProfileForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const profileData = {
+                name: document.getElementById('name').value,
+                surname: document.getElementById('surname').value,
+                mobile: document.getElementById('mobile').value,
+                address1: document.getElementById('address1').value,
+                address2: document.getElementById('address2').value,
+                postcode: document.getElementById('postcode').value,
+                state: document.getElementById('state').value,
+                area: document.getElementById('area').value,
+                email: document.getElementById('email').value,
+                education: document.getElementById('education').value,
+                country: document.getElementById('country').value,
+                region: document.getElementById('region').value
+            };
+
+            try {
+                const response = await fetch('/api/users/profile', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': localStorage.getItem('token') // Assuming token is stored in localStorage
+                    },
+                    body: JSON.stringify(profileData)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to update profile');
+                }
+
+                const data = await response.json();
+                alert('Profile updated successfully!');
+                window.location.href = 'profile.html'; // Redirect to profile page
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                alert('Error updating profile');
+            }
+        });
+    </script>
+</body>
+</html>

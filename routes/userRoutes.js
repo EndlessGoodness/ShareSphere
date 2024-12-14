@@ -100,4 +100,36 @@ router.get('/profile', auth, async (req, res) => {
     }
 });
 
+// Protected route to update user profile
+router.put('/profile', auth, async (req, res) => {
+    const { name, surname, mobile, address1, address2, postcode, state, area, email, education, country, region } = req.body;
+
+    try {
+        const user = await User.findById(req.user);
+
+        if (!user) {
+            return res.status(404).json({ msg: 'User not found' });
+        }
+
+        user.name = name || user.name;
+        user.surname = surname || user.surname;
+        user.mobile = mobile || user.mobile;
+        user.address1 = address1 || user.address1;
+        user.address2 = address2 || user.address2;
+        user.postcode = postcode || user.postcode;
+        user.state = state || user.state;
+        user.area = area || user.area;
+        user.email = email || user.email;
+        user.education = education || user.education;
+        user.country = country || user.country;
+        user.region = region || user.region;
+
+        await user.save();
+
+        res.json(user);
+    } catch (err) {
+        res.status(500).json({ msg: 'Server error' });
+    }
+});
+
 module.exports = router;
